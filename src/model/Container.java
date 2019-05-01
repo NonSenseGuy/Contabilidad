@@ -1,18 +1,18 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class Container {
 	private HashMap<String,Integer> actives;
-	private HashMap<String,Integer> pasives;
+	private HashMap<String,Integer> passives;
 	private HashMap<String,Integer> heritage; 
 	private HashMap<String,Integer> entry;
 	private HashMap<String,Integer> spend;
 	
 	public Container() {
 		actives = new HashMap<>();
-		pasives = new HashMap<>();
+		passives = new HashMap<>();
 		heritage = new HashMap<>();
 		entry = new HashMap<>();
 		spend = new HashMap<>();
@@ -27,8 +27,8 @@ public class Container {
 
 
 
-	public HashMap<String, Integer> getPasives() {
-		return pasives;
+	public HashMap<String, Integer> getPassives() {
+		return passives;
 	}
 
 
@@ -52,10 +52,10 @@ public class Container {
 
 
 	public int sumValues(HashMap<String,Integer> map) {
-		ArrayList<Integer> l = (ArrayList<Integer>) map.values();
+		Collection<Integer> list = map.values();
 		int sum = 0;
-		for(int i = 0; i < l.size(); i++) {
-			sum += l.get(i);
+		for(int i: list) {
+			sum += i;
 		}
 		return sum; 
 	}
@@ -63,7 +63,7 @@ public class Container {
 	public boolean isBalanced() {
 		int a = sumValues(this.actives);
 		int h = sumValues(this.heritage);
-		int p = sumValues(this.pasives);
+		int p = sumValues(this.passives);
 		boolean cond = a-h-p == 0;
 		return cond;
 	}

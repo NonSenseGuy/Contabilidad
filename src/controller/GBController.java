@@ -40,24 +40,60 @@ public class GBController implements Initializable{
 
     @FXML
     void addActive(ActionEvent event) {
-    	String activeAccount = createInputDialog("Activo","Nombre de la cuenta");
+    	String account = createInputDialog("Activo","Nombre de la cuenta");
     	int value = Integer.parseInt((createInputDialog("Activo","valor de la cuenta")));
+    	container.getActives().put(account, value);
+    	String entryorspend = entryOrSpendDialog();
+    	if(entryorspend.equals("i")) {
+    		container.getEntry().put(account, value);
+    	}else if(entryorspend.equals("g")) {
+    		container.getSpend().put(account, value);
+    	}
+    	updateGUI();
     	 
     }
 
     @FXML
     void addHeritage(ActionEvent event) {
-
+    	String account = createInputDialog("Patrimonio","Nombre de la cuenta");
+    	int value = Integer.parseInt((createInputDialog("Patrimonio","valor de la cuenta")));
+    	container.getHeritage().put(account, value);
+    	String entryorspend = entryOrSpendDialog();
+    	if(entryorspend.equals("i")) {
+    		container.getEntry().put(account, value);
+    	}else if(entryorspend.equals("g")) {
+    		container.getSpend().put(account, value);
+    	}
+    	updateGUI();
+    	 
     }
 
     @FXML
     void addPasive(ActionEvent event) {
-
+    	String account = createInputDialog("Pasivo","Nombre de la cuenta");
+    	int value = Integer.parseInt((createInputDialog("Pasivo","valor de la cuenta")));
+    	container.getPassives().put(account, value);
+    	String entryorspend = entryOrSpendDialog();
+    	if(entryorspend.equals("i")) {
+    		container.getEntry().put(account, value);
+    	}else if(entryorspend.equals("g")) {
+    		container.getSpend().put(account, value);
+    	}
+    	updateGUI();
+    	 
     }
 
     @FXML
     void next(ActionEvent event) {
-
+    	if(container.isBalanced()) {
+    		Alert alert = new Alert(AlertType.CONFIRMATION);
+	    	alert.setContentText("El balange general es correcto");
+	    	alert.showAndWait();
+    	}else {
+    		Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setContentText("El balange general esta erroneo");
+	    	alert.showAndWait();
+    	}
     }   
     
 	public String createInputDialog(String title, String message) throws IllegalArgumentException{
@@ -65,6 +101,23 @@ public class GBController implements Initializable{
 	    dialog.setTitle(title);
 	    dialog.setHeaderText(null);
 	    dialog.setContentText(message);
+
+	    Optional<String> result = dialog.showAndWait();
+	    if (result.isPresent()){
+	    	return result.get();
+	    }else {
+	    	Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setContentText("Formateo erroneo, este seguro de no dejar ningun espacio en blanco");
+	    	alert.showAndWait();
+	    	throw new IllegalArgumentException("");
+	    }
+	}
+	
+	public String entryOrSpendDialog() {
+		TextInputDialog dialog = new TextInputDialog("");
+	    dialog.setTitle("Clasifica como ingreso o gasto?");
+	    dialog.setHeaderText(null);
+	    dialog.setContentText("Digite 'i' si clasifica como ingreso,'g' si clasifica como gasto o presione cualquier otra tecla si no clasifica como ninguno de los 2");
 
 	    Optional<String> result = dialog.showAndWait();
 	    if (result.isPresent()){
@@ -85,12 +138,25 @@ public class GBController implements Initializable{
 				activeList.getItems().add(s);
 			}
 		}
+		if(container.getPassives() != null) {
+			passiveList.getItems().clear();
+			for(String account: container.getPassives().keySet()) {
+				String s = account + " : " + container.getPassives().get(account);
+				passiveList.getItems().add(s);
+			}
+		}
+		if(container.getHeritage() != null) {
+			heritageList.getItems().clear();
+			for(String account: container.getHeritage().keySet()) {
+				String s = account + " : " + container.getHeritage().get(account);
+				heritageList.getItems().add(s);
+			}
+		}
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		container = new Container();
-		System.out.println("Hello");
 
 	}
 

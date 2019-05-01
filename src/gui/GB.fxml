@@ -5,8 +5,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="611.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GBController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GBController">
    <children>
       <ListView id="activesList" fx:id="activeList" layoutX="14.0" layoutY="40.0" prefHeight="371.0" prefWidth="275.0" />
       <ListView id="pasivesList" fx:id="passiveList" layoutX="299.0" layoutY="39.0" prefHeight="157.0" prefWidth="285.0" />
@@ -19,4 +18,4 @@
       <Button id="addPasive" fx:id="passiveButton" layoutX="406.0" layoutY="200.0" mnemonicParsing="false" onAction="#addPasive" text="Agregar pasivo" />
       <Button id="addHeritage" fx:id="heritageButton" layoutX="394.0" layoutY="424.0" mnemonicParsing="false" onAction="#addHeritage" text="Agregar patrimonio" />
    </children>
-</fx:root>
+</AnchorPane>
