@@ -45,46 +45,70 @@ public class GBController implements Initializable{
 
     @FXML
     void addActive(ActionEvent event) {
-    	String account = createInputDialog("Activo","Nombre de la cuenta");
-    	int value = Integer.parseInt((createInputDialog("Activo","valor de la cuenta")));
-    	container.getActives().put(account, value);
-    	String entryorspend = entryOrSpendDialog();
-    	if(entryorspend.equals("i")) {
-    		container.getEntry().put(account, value);
-    	}else if(entryorspend.equals("g")) {
-    		container.getSpend().put(account, value);
+    	try {
+    		String account = createInputDialog("Activo","Nombre de la cuenta");
+        	int value = Integer.parseInt((createInputDialog("Activo","valor de la cuenta")));
+        	container.getActives().put(account, value);
+        	String entryorspend = entryOrSpendDialog();
+        	if(entryorspend.equals("i")) {
+        		container.getEntry().put(account, value);
+        	}else if(entryorspend.equals("g")) {
+        		container.getSpend().put(account, value);
+        	}
+        	updateGUI();
+        	
+    	}catch(NumberFormatException e) {
+    		Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setContentText("Formateo erroneo");
+	    	alert.showAndWait();
+	    	throw new IllegalArgumentException("");
     	}
-    	updateGUI();
     	 
     }
 
     @FXML
     void addHeritage(ActionEvent event) {
-    	String account = createInputDialog("Patrimonio","Nombre de la cuenta");
-    	int value = Integer.parseInt((createInputDialog("Patrimonio","valor de la cuenta")));
-    	container.getHeritage().put(account, value);
-    	String entryorspend = entryOrSpendDialog();
-    	if(entryorspend.equals("i")) {
-    		container.getEntry().put(account, value);
-    	}else if(entryorspend.equals("g")) {
-    		container.getSpend().put(account, value);
+    	try {
+    		String account = createInputDialog("Patrimonio","Nombre de la cuenta");
+        	int value = Integer.parseInt((createInputDialog("Patrimonio","valor de la cuenta")));
+        	container.getHeritage().put(account, value);
+        	String entryorspend = entryOrSpendDialog();
+        	if(entryorspend.equals("i")) {
+        		container.getEntry().put(account, value);
+        	}else if(entryorspend.equals("g")) {
+        		container.getSpend().put(account, value);
+        	}
+        	updateGUI();
+    	}catch(NumberFormatException e) {
+    		Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setContentText("Formateo erroneo");
+	    	alert.showAndWait();
+	    	throw new IllegalArgumentException("");
     	}
-    	updateGUI();
+    	
     	 
     }
 
     @FXML
     void addPasive(ActionEvent event) {
-    	String account = createInputDialog("Pasivo","Nombre de la cuenta");
-    	int value = Integer.parseInt((createInputDialog("Pasivo","valor de la cuenta")));
-    	container.getPassives().put(account, value);
-    	String entryorspend = entryOrSpendDialog();
-    	if(entryorspend.equals("i")) {
-    		container.getEntry().put(account, value);
-    	}else if(entryorspend.equals("g")) {
-    		container.getSpend().put(account, value);
+    	try {
+    		String account = createInputDialog("Pasivo","Nombre de la cuenta");
+        	int value = Integer.parseInt((createInputDialog("Pasivo","valor de la cuenta")));
+        	container.getPassives().put(account, value);
+        	String entryorspend = entryOrSpendDialog();
+        	if(entryorspend.equals("i")) {
+        		container.getEntry().put(account, value);
+        	}else if(entryorspend.equals("g")) {
+        		container.getSpend().put(account, value);
+        	}
+        	updateGUI();
+    	}catch(NumberFormatException e) {
+    		Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setContentText("Formateo erroneo");
+	    	alert.showAndWait();
+	    	throw new IllegalArgumentException("");
     	}
-    	updateGUI();
+    	
     	 
     }
 
@@ -98,7 +122,7 @@ public class GBController implements Initializable{
 	    	
     	}else {
     		Alert alert = new Alert(AlertType.ERROR);
-	    	alert.setContentText("El balange general esta erroneo");
+	    	alert.setContentText("El balange general esta erroneo, la diferencia es de " + container.diff());
 	    	alert.showAndWait();
     	}
     }   
@@ -138,21 +162,21 @@ public class GBController implements Initializable{
 	}
 	
 	public void updateGUI() {
-		if(container.getActives() != null) {
+		if(!container.getActives().isEmpty()) {
 			activeList.getItems().clear();
 			for(String account: container.getActives().keySet()) {
 				String s = account + " : " + container.getActives().get(account);
 				activeList.getItems().add(s);
 			}
 		}
-		if(container.getPassives() != null) {
+		if(!container.getPassives().isEmpty()) {
 			passiveList.getItems().clear();
 			for(String account: container.getPassives().keySet()) {
 				String s = account + " : " + container.getPassives().get(account);
 				passiveList.getItems().add(s);
 			}
 		}
-		if(container.getHeritage() != null) {
+		if(!container.getHeritage().isEmpty()) {
 			heritageList.getItems().clear();
 			for(String account: container.getHeritage().keySet()) {
 				String s = account + " : " + container.getHeritage().get(account);
@@ -169,11 +193,21 @@ public class GBController implements Initializable{
 	
 	public void goToRE() {
 	  	try {
-    		Parent root = FXMLLoader.load(getClass().getResource("/gui/RE.fxml"));
-        	Scene scene = new Scene(root);
-        	Stage stage = (Stage) nextButton.getScene().getWindow();
-        	stage.setScene(scene);	
-        	stage.show();
+//    		Parent root = FXMLLoader.load(getClass().getResource("/gui/RE.fxml"));
+//    		REController controller = 
+//        	Scene scene = new Scene(root);
+//        	Stage stage = (Stage) nextButton.getScene().getWindow();
+//        	stage.setScene(scene);	
+//        	stage.show();
+	  		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/RE.fxml"));
+	  		Parent root = (Parent)fxmlLoader.load();
+	  		REController controller = fxmlLoader.<REController>getController();
+	  		controller.setContainer(container);
+	  		Scene scene = new Scene(root);
+	  		Stage stage = (Stage) nextButton.getScene().getWindow();
+	  		stage.setScene(scene);
+	  		stage.show();
+        	
     	}catch(IOException e ) {
     		e.printStackTrace();
 }

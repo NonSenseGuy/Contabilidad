@@ -60,11 +60,41 @@ public class Container {
 		return sum; 
 	}
 	
-	public boolean isBalanced() {
+	public int diff() {
 		int a = sumValues(this.actives);
 		int h = sumValues(this.heritage);
 		int p = sumValues(this.passives);
-		boolean cond = a-h-p == 0;
-		return cond;
+		
+		return a-p-h;
+	}
+	
+	public int totalActives() {
+		return sumValues(this.actives);
+	}
+	
+	public int totalPassives() {
+		return sumValues(this.passives);
+	}
+	
+	public int totalHeritage() {
+		return sumValues(this.heritage);
+	}
+	
+	public int totalEntry() {
+		return sumValues(this.entry);
+	}
+	
+	public int totalSpend() {
+		return sumValues(this.entry);
+	}
+	
+	public int getUtility() {
+		int entry = sumValues(this.entry);
+		int spend = sumValues(this.spend);
+		return entry-spend;
+	}
+	
+	public boolean isBalanced() {
+		return diff() == 0; 
 	}
 }
