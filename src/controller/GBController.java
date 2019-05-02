@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,6 +53,14 @@ public class GBController implements Initializable{
     
     @FXML
     private Label totalHeritage;
+    
+    @FXML
+    private Button evaluateButton;
+    
+    @FXML
+    void next(ActionEvent event) {
+    	goToRE();
+    }
 
     @FXML
     void addActive(ActionEvent event) {
@@ -123,12 +132,11 @@ public class GBController implements Initializable{
     }
 
     @FXML
-    void next(ActionEvent event) {
+    void evaluateBalance(ActionEvent event) {
     	if(container.isBalanced()) {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
 	    	alert.setContentText("El balange general es correcto");
 	    	alert.showAndWait();
-	    	goToRE();
 	    	
     	}else {
     		Alert alert = new Alert(AlertType.ERROR);
@@ -202,17 +210,24 @@ public class GBController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		container = new Container();
+		   Platform.runLater(() -> {
 
+				updateGUI();
+				if(container == null) {
+					container = new Container();
+				}
+
+		    });
+
+	}
+	
+	public void setContainer(Container c ) {
+		container = c;
 	}
 	
 	public void goToRE() {
 	  	try {
-//    		Parent root = FXMLLoader.load(getClass().getResource("/gui/RE.fxml"));
-//    		REController controller = 
-//        	Scene scene = new Scene(root);
-//        	Stage stage = (Stage) nextButton.getScene().getWindow();
-//        	stage.setScene(scene);	
-//        	stage.show();
+
 	  		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/RE.fxml"));
 	  		Parent root = (Parent)fxmlLoader.load();
 	  		REController controller = fxmlLoader.<REController>getController();
@@ -224,7 +239,7 @@ public class GBController implements Initializable{
         	
     	}catch(IOException e ) {
     		e.printStackTrace();
-}
+    	}
 	}
 
 }

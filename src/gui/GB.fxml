@@ -13,7 +13,7 @@
       <Label layoutX="14.0" layoutY="22.0" text="Activos" />
       <Label layoutX="300.0" layoutY="22.0" text="Pasivos" />
       <Label layoutX="298.0" layoutY="250.0" text="Patrimonio" />
-      <Button id="nextButton" fx:id="nextButton" layoutX="235.0" layoutY="461.0" mnemonicParsing="false" onAction="#next" text="Estado de resultados" />
+      <Button id="nextButton" fx:id="nextButton" layoutX="357.0" layoutY="460.0" mnemonicParsing="false" onAction="#next" text="Estado de resultados" />
       <Button id="addActive" fx:id="activeButton" layoutX="190.0" layoutY="421.0" mnemonicParsing="false" onAction="#addActive" text="Agregar activo" />
       <Button id="addPasive" fx:id="passiveButton" layoutX="488.0" layoutY="223.0" mnemonicParsing="false" onAction="#addPasive" text="Agregar pasivo" />
       <Button id="addHeritage" fx:id="heritageButton" layoutX="460.0" layoutY="421.0" mnemonicParsing="false" onAction="#addHeritage" text="Agregar patrimonio" />
@@ -23,5 +23,6 @@
       <Label fx:id="totalActives" layoutX="67.0" layoutY="425.0" prefHeight="17.0" prefWidth="126.0" text="0" />
       <Label fx:id="totalPassives" layoutX="351.0" layoutY="227.0" prefHeight="17.0" prefWidth="137.0" text="0" />
       <Label fx:id="totalHeritage" layoutX="339.0" layoutY="425.0" prefHeight="17.0" prefWidth="121.0" text="0" />
+      <Button id="nextButton" fx:id="evaluateButton" layoutX="111.0" layoutY="460.0" mnemonicParsing="false" onAction="#evaluateBalance" text="Evaluar balance" />
    </children>
 </AnchorPane>

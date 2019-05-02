@@ -15,5 +15,6 @@
       <Button id="addHeritage" fx:id="spendButton" layoutX="403.0" layoutY="416.0" mnemonicParsing="false" onAction="#addSpend" text="Agregar gasto" />
       <Label layoutX="231.0" layoutY="449.0" prefHeight="17.0" prefWidth="58.0" text="Utilidad =" AnchorPane.rightAnchor="322.0" />
       <Label fx:id="Utility" layoutX="289.0" layoutY="449.0" prefHeight="17.0" prefWidth="172.0" text="0" />
+      <Button id="addActive" fx:id="nextButton" layoutX="37.0" layoutY="453.0" mnemonicParsing="false" onAction="#next" text="Balance general" />
    </children>
 </AnchorPane>
