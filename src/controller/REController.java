@@ -118,7 +118,8 @@ public class REController implements Initializable{
     		}
     		
     	}
-    	Utility.setText(Integer.toString(container.getUtility()));
+    	
+    		Utility.setText(Integer.toString(container.getUtility()));
     }
     
 	public void goToGB() {
@@ -136,6 +137,7 @@ public class REController implements Initializable{
     	}catch(IOException e ) {
     		e.printStackTrace();
     	}
+	  	refreshUtility();
 	}
 
 	@Override
@@ -146,10 +148,14 @@ public class REController implements Initializable{
 				if(container == null) {
 					container = new Container();
 				}
-
+				
 		    });
 
 		
+	}
+	
+	public void refreshUtility() {
+		container.getHeritage().put("Utilidad", container.getUtility());
 	}
 
 }

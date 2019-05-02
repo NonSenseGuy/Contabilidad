@@ -180,6 +180,7 @@ public class GBController implements Initializable{
 	}
 	
 	public void updateGUI() {
+		refreshUtility();
 		if(!container.getActives().isEmpty()) {
 			activeList.getItems().clear();
 			for(String account: container.getActives().keySet()) {
@@ -199,12 +200,14 @@ public class GBController implements Initializable{
 			for(String account: container.getHeritage().keySet()) {
 				String s = account + " : " + container.getHeritage().get(account);
 				heritageList.getItems().add(s);
-			}
+			}	
+				
 		}
 		
 		totalActives.setText(Integer.toString(container.totalActives()));
 		totalPassives.setText(Integer.toString(container.totalPassives()));
 		totalHeritage.setText(Integer.toString(container.totalHeritage()));
+		
 	}
 
 	@Override
@@ -216,7 +219,7 @@ public class GBController implements Initializable{
 				if(container == null) {
 					container = new Container();
 				}
-
+				
 		    });
 
 	}
@@ -240,6 +243,11 @@ public class GBController implements Initializable{
     	}catch(IOException e ) {
     		e.printStackTrace();
     	}
+	  	refreshUtility();
+	}
+	
+	public void refreshUtility() {
+		container.getHeritage().put("Utilidad", container.getUtility());
 	}
 
 }
