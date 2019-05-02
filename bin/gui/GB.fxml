@@ -20,8 +20,8 @@
       <Label layoutX="20.0" layoutY="425.0" text="Total" />
       <Label layoutX="300.0" layoutY="425.0" text="Total" />
       <Label layoutX="300.0" layoutY="227.0" text="Total" />
-      <Label fx:id="totalActives" layoutX="67.0" layoutY="425.0" prefHeight="17.0" prefWidth="126.0" />
-      <Label fx:id="totalPassives" layoutX="351.0" layoutY="227.0" prefHeight="17.0" prefWidth="137.0" />
-      <Label fx:id="totalHeritage" layoutX="339.0" layoutY="425.0" prefHeight="17.0" prefWidth="121.0" />
+      <Label fx:id="totalActives" layoutX="67.0" layoutY="425.0" prefHeight="17.0" prefWidth="126.0" text="0" />
+      <Label fx:id="totalPassives" layoutX="351.0" layoutY="227.0" prefHeight="17.0" prefWidth="137.0" text="0" />
+      <Label fx:id="totalHeritage" layoutX="339.0" layoutY="425.0" prefHeight="17.0" prefWidth="121.0" text="0" />
    </children>
 </AnchorPane>
