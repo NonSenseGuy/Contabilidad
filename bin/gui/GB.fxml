@@ -8,14 +8,20 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GBController">
    <children>
       <ListView id="activesList" fx:id="activeList" layoutX="14.0" layoutY="40.0" prefHeight="371.0" prefWidth="275.0" />
-      <ListView id="pasivesList" fx:id="passiveList" layoutX="299.0" layoutY="39.0" prefHeight="157.0" prefWidth="285.0" />
-      <ListView id="heritageList" fx:id="heritageList" layoutX="299.0" layoutY="248.0" prefHeight="163.0" prefWidth="285.0" />
+      <ListView id="pasivesList" fx:id="passiveList" layoutX="299.0" layoutY="39.0" prefHeight="171.0" prefWidth="285.0" />
+      <ListView id="heritageList" fx:id="heritageList" layoutX="299.0" layoutY="275.0" prefHeight="136.0" prefWidth="285.0" />
       <Label layoutX="14.0" layoutY="22.0" text="Activos" />
       <Label layoutX="300.0" layoutY="22.0" text="Pasivos" />
-      <Label layoutX="299.0" layoutY="226.0" text="Patrimonio" />
-      <Button id="nextButton" fx:id="nextButton" layoutX="237.0" layoutY="460.0" mnemonicParsing="false" onAction="#next" text="Estado de resultados" />
-      <Button id="addActive" fx:id="activeButton" layoutX="105.0" layoutY="424.0" mnemonicParsing="false" onAction="#addActive" text="Agregar activo" />
-      <Button id="addPasive" fx:id="passiveButton" layoutX="406.0" layoutY="200.0" mnemonicParsing="false" onAction="#addPasive" text="Agregar pasivo" />
-      <Button id="addHeritage" fx:id="heritageButton" layoutX="394.0" layoutY="424.0" mnemonicParsing="false" onAction="#addHeritage" text="Agregar patrimonio" />
+      <Label layoutX="298.0" layoutY="250.0" text="Patrimonio" />
+      <Button id="nextButton" fx:id="nextButton" layoutX="235.0" layoutY="461.0" mnemonicParsing="false" onAction="#next" text="Estado de resultados" />
+      <Button id="addActive" fx:id="activeButton" layoutX="190.0" layoutY="421.0" mnemonicParsing="false" onAction="#addActive" text="Agregar activo" />
+      <Button id="addPasive" fx:id="passiveButton" layoutX="488.0" layoutY="223.0" mnemonicParsing="false" onAction="#addPasive" text="Agregar pasivo" />
+      <Button id="addHeritage" fx:id="heritageButton" layoutX="460.0" layoutY="421.0" mnemonicParsing="false" onAction="#addHeritage" text="Agregar patrimonio" />
+      <Label layoutX="20.0" layoutY="425.0" text="Total" />
+      <Label layoutX="300.0" layoutY="425.0" text="Total" />
+      <Label layoutX="300.0" layoutY="227.0" text="Total" />
+      <Label fx:id="totalActives" layoutX="67.0" layoutY="425.0" prefHeight="17.0" prefWidth="126.0" />
+      <Label fx:id="totalPassives" layoutX="351.0" layoutY="227.0" prefHeight="17.0" prefWidth="137.0" />
+      <Label fx:id="totalHeritage" layoutX="339.0" layoutY="425.0" prefHeight="17.0" prefWidth="121.0" />
    </children>
 </AnchorPane>

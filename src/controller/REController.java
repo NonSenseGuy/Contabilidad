@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
@@ -30,6 +31,11 @@ public class REController implements Initializable{
 
     @FXML
     private Button spendButton;
+    
+    @FXML
+    private Label Utility;
+
+       
 
     @FXML
     void addEntry(ActionEvent event){
@@ -101,6 +107,7 @@ public class REController implements Initializable{
     		}
     		
     	}
+    	Utility.setText(Integer.toString(container.getUtility()));
     }
 
 	@Override

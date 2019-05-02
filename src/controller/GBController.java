@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
@@ -42,6 +43,15 @@ public class GBController implements Initializable{
 
     @FXML
     private Button heritageButton;
+    
+    @FXML
+    private Label totalActives;
+    
+    @FXML
+    private Label totalPassives;
+    
+    @FXML
+    private Label totalHeritage;
 
     @FXML
     void addActive(ActionEvent event) {
@@ -183,6 +193,10 @@ public class GBController implements Initializable{
 				heritageList.getItems().add(s);
 			}
 		}
+		
+		totalActives.setText(Integer.toString(container.totalActives()));
+		totalPassives.setText(Integer.toString(container.totalPassives()));
+		totalHeritage.setText(Integer.toString(container.totalHeritage()));
 	}
 
 	@Override
