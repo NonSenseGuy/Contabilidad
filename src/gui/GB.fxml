@@ -8,15 +8,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GBController">
    <children>
-      <ListView id="pasivesList" fx:id="passiveList" layoutX="299.0" layoutY="120.0" prefHeight="171.0" prefWidth="312.0" />
+      <ListView id="pasivesList" fx:id="passiveList" layoutX="299.0" layoutY="96.0" prefHeight="195.0" prefWidth="312.0" />
       <Label layoutX="128.0" layoutY="71.0" text="Activos" />
       <Label layoutX="439.0" layoutY="71.0" text="Pasivos" />
       <Button id="nextButton" fx:id="nextButton" layoutX="388.0" layoutY="606.0" mnemonicParsing="false" onAction="#next" prefHeight="25.0" prefWidth="126.0" text="Estado de resultados" />
       <Button id="addHeritage" fx:id="addAccountButton" layoutX="235.0" layoutY="606.0" mnemonicParsing="false" onAction="#addDato" prefHeight="25.0" prefWidth="126.0" text="Agregar Cuenta" />
       <Button id="nextButton" fx:id="evaluateButton" layoutX="84.0" layoutY="606.0" mnemonicParsing="false" onAction="#evaluateBalance" prefHeight="25.0" prefWidth="126.0" text="Evaluar balance" />
-      <ListView id="pasivesList" fx:id="activeCurrentList" layoutX="-5.0" layoutY="120.0" prefHeight="171.0" prefWidth="304.0" />
+      <ListView id="pasivesList" fx:id="activeCurrentList" layoutX="-5.0" layoutY="120.0" prefHeight="195.0" prefWidth="304.0" />
       <ListView id="pasivesList" fx:id="heritageList" layoutX="299.0" layoutY="364.0" prefHeight="188.0" prefWidth="312.0" />
-      <ListView id="pasivesList" fx:id="activeNotCurrentList" layoutX="-5.0" layoutY="389.0" prefHeight="163.0" prefWidth="304.0" />
+      <ListView id="pasivesList" fx:id="activeNotCurrentList" layoutX="-5.0" layoutY="364.0" prefHeight="188.0" prefWidth="304.0" />
       <Label fx:id="totalActivesNC" layoutX="174.0" layoutY="527.0" prefHeight="17.0" prefWidth="126.0" text="0" />
       <Label fx:id="totalHeritage" layoutX="478.0" layoutY="527.0" prefHeight="17.0" prefWidth="126.0" text="0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="6.0" prefHeight="17.0" prefWidth="611.0" text="Empresa" />
@@ -24,9 +24,9 @@
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="40.0" prefHeight="17.0" prefWidth="611.0" text="Fecha" />
       <Label layoutX="11.0" layoutY="527.0" prefHeight="17.0" prefWidth="147.0" text="Total " />
       <Label layoutX="315.0" layoutY="527.0" prefHeight="17.0" prefWidth="147.0" text="Total " />
-      <Label fx:id="totalActivesC" layoutX="171.0" layoutY="298.0" prefHeight="17.0" prefWidth="126.0" text="0" />
+      <Label fx:id="totalActivesC" layoutX="172.0" layoutY="318.0" prefHeight="17.0" prefWidth="126.0" text="0" />
       <Label fx:id="totalPassives" layoutX="478.0" layoutY="298.0" prefHeight="17.0" prefWidth="126.0" text="0" />
-      <Label layoutX="12.0" layoutY="298.0" prefHeight="17.0" prefWidth="126.0" text="Total " />
+      <Label layoutX="11.0" layoutY="318.0" prefHeight="17.0" prefWidth="126.0" text="Total " />
       <Label layoutX="314.0" layoutY="298.0" prefHeight="17.0" prefWidth="67.0" text="Total" />
       <Label fx:id="totalActives" layoutX="174.0" layoutY="560.0" prefHeight="17.0" prefWidth="126.0" text="0" />
       <Label fx:id="totalPassivesAndHeritage" layoutX="478.0" layoutY="560.0" prefHeight="17.0" prefWidth="126.0" text="0" />
@@ -34,17 +34,19 @@
       <Label layoutX="315.0" layoutY="560.0" prefHeight="17.0" prefWidth="147.0" text="Total Pasivos y Patrimonio" />
       <Line endX="548.0" layoutX="64.0" layoutY="526.0" startX="-63.0" />
       <Line endX="548.0" layoutX="63.0" layoutY="57.0" startX="-63.0" />
-      <Line endX="554.0" layoutX="59.0" layoutY="321.0" startX="-63.0" />
+      <Line endX="554.0" layoutX="59.0" layoutY="321.0" startX="241.0" startY="0.5" />
       <Line endX="548.0" layoutX="64.0" layoutY="96.0" startX="-63.0" />
-      <Line endX="548.0" layoutX="65.0" layoutY="363.0" startX="-69.0" />
+      <Line endX="548.0" layoutX="65.0" layoutY="363.0" startX="234.0" startY="1.0" />
       <Label layoutX="431.0" layoutY="333.0" text="Patrimonio" />
-      <Line endX="554.0" layoutX="57.0" layoutY="291.0" startX="-63.0" />
+      <Line endX="554.0" layoutX="57.0" layoutY="291.0" startX="243.0" />
       <Label layoutX="100.0" layoutY="97.0" text="Activos Corrientes" />
-      <Line endX="551.0" layoutX="60.0" layoutY="120.0" startX="-63.0" />
+      <Line endX="239.0" layoutX="60.0" layoutY="120.0" startX="-63.0" />
       <Line endX="-1.5" endY="522.5" layoutX="301.0" layoutY="63.0" startX="-1.5" startY="-5.5" />
-      <Line endX="238.0" layoutX="61.0" layoutY="389.0" startX="-63.0" />
-      <Label layoutX="93.0" layoutY="363.0" text="Activos No Corrientes" />
+      <Line endX="238.0" layoutX="62.0" layoutY="364.0" startX="-63.0" />
+      <Label layoutX="91.0" layoutY="342.0" text="Activos No Corrientes" />
       <Line endX="548.0" layoutX="61.0" layoutY="552.0" startX="-63.0" />
       <Line endX="548.0" layoutX="63.0" layoutY="585.0" startX="-63.0" />
+      <Line endX="547.0" layoutX="-248.0" layoutY="315.0" startX="242.0" />
+      <Line endX="547.0" layoutX="-248.0" layoutY="341.0" startX="242.0" />
    </children>
 </AnchorPane>
