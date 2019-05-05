@@ -105,7 +105,7 @@ public class REController implements Initializable{
     	if(!container.getEntry().isEmpty()) {
     		entryList.getItems().clear();
     		for(String account: container.getEntry().keySet()) {
-    			String s = account + " : " + container.getEntry().get(account);
+    			String s = account + "          $ "+ container.getEntry().get(account);
     			entryList.getItems().add(s);
     		}
     		
@@ -113,7 +113,7 @@ public class REController implements Initializable{
     	if(!container.getSpend().isEmpty()){
     		spendList.getItems().clear();
     		for(String account: container.getSpend().keySet()) {
-    			String s = account + " : " + container.getSpend().get(account);
+    			String s = account + "          $ " + container.getSpend().get(account);
     			spendList.getItems().add(s);
     		}
     		

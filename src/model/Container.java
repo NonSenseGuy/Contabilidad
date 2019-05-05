@@ -4,14 +4,16 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class Container {
-	private HashMap<String,Integer> actives;
+	private HashMap<String,Integer> activeCurrent;
+	private HashMap<String,Integer> activeNotCurrent;
 	private HashMap<String,Integer> passives;
 	private HashMap<String,Integer> heritage; 
 	private HashMap<String,Integer> entry;
 	private HashMap<String,Integer> spend;
 	
 	public Container() {
-		actives = new HashMap<>();
+		activeCurrent = new HashMap<>();
+		activeNotCurrent = new HashMap<>();
 		passives = new HashMap<>();
 		heritage = new HashMap<>();
 		entry = new HashMap<>();
@@ -19,13 +21,13 @@ public class Container {
 		
 	}
 	
-	
-	
-	public HashMap<String, Integer> getActives() {
-		return actives;
+	public HashMap<String, Integer> getActivesCurrent() {
+		return activeCurrent;
 	}
-
-
+	
+	public HashMap<String, Integer> getActivesNotCurrent() {
+		return activeNotCurrent;
+	}
 
 	public HashMap<String, Integer> getPassives() {
 		return passives;
@@ -61,15 +63,20 @@ public class Container {
 	}
 	
 	public int diff() {
-		int a = sumValues(this.actives);
+		int a = sumValues(this.activeCurrent);
+		int anc = sumValues(this.activeNotCurrent);
 		int h = sumValues(this.heritage);
 		int p = sumValues(this.passives);
 		
-		return a-p-h;
+		return (a+anc)-p-h;
 	}
 	
-	public int totalActives() {
-		return sumValues(this.actives);
+	public int totalActivesC() {
+		return sumValues(this.activeCurrent);
+	}
+	
+	public int totalActivesNC() {
+		return sumValues(this.activeNotCurrent);
 	}
 	
 	public int totalPassives() {
