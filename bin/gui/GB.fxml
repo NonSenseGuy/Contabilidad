@@ -14,14 +14,14 @@
       <Button id="nextButton" fx:id="nextButton" layoutX="388.0" layoutY="606.0" mnemonicParsing="false" onAction="#next" prefHeight="25.0" prefWidth="126.0" text="Estado de resultados" />
       <Button id="addHeritage" fx:id="addAccountButton" layoutX="235.0" layoutY="606.0" mnemonicParsing="false" onAction="#addDato" prefHeight="25.0" prefWidth="126.0" text="Agregar Cuenta" />
       <Button id="nextButton" fx:id="evaluateButton" layoutX="84.0" layoutY="606.0" mnemonicParsing="false" onAction="#evaluateBalance" prefHeight="25.0" prefWidth="126.0" text="Evaluar balance" />
-      <ListView id="pasivesList" fx:id="activeCurrentList" layoutX="-5.0" layoutY="120.0" prefHeight="195.0" prefWidth="304.0" />
+      <ListView id="pasivesList" fx:id="activeCurrentList" layoutX="-5.0" layoutY="120.0" onMouseClicked="#removeCurrentActive" prefHeight="195.0" prefWidth="304.0" />
       <ListView id="pasivesList" fx:id="heritageList" layoutX="299.0" layoutY="364.0" prefHeight="188.0" prefWidth="312.0" />
       <ListView id="pasivesList" fx:id="activeNotCurrentList" layoutX="-5.0" layoutY="364.0" prefHeight="188.0" prefWidth="304.0" />
       <Label fx:id="totalActivesNC" layoutX="174.0" layoutY="527.0" prefHeight="17.0" prefWidth="126.0" text="0" />
       <Label fx:id="totalHeritage" layoutX="478.0" layoutY="527.0" prefHeight="17.0" prefWidth="126.0" text="0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="6.0" prefHeight="17.0" prefWidth="611.0" text="Empresa" />
+      <Label fx:id="companyName" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="6.0" prefHeight="17.0" prefWidth="611.0" text="Empresa" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="23.0" prefHeight="17.0" prefWidth="611.0" text="Balance General" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="40.0" prefHeight="17.0" prefWidth="611.0" text="Fecha" />
+      <Label fx:id="date" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="40.0" prefHeight="17.0" prefWidth="611.0" text="Fecha" />
       <Label layoutX="11.0" layoutY="527.0" prefHeight="17.0" prefWidth="147.0" text="Total " />
       <Label layoutX="315.0" layoutY="527.0" prefHeight="17.0" prefWidth="147.0" text="Total " />
       <Label fx:id="totalActivesC" layoutX="172.0" layoutY="318.0" prefHeight="17.0" prefWidth="126.0" text="0" />

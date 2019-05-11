@@ -13,7 +13,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage window) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/gui/GB.fxml"));
+		loader.setLocation(getClass().getResource("/gui/InitialForm.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		window.setScene(scene);

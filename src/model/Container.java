@@ -4,12 +4,12 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class Container {
-	private HashMap<String,Integer> activeCurrent;
-	private HashMap<String,Integer> activeNotCurrent;
-	private HashMap<String,Integer> passives;
-	private HashMap<String,Integer> heritage; 
-	private HashMap<String,Integer> entry;
-	private HashMap<String,Integer> spend;
+	private HashMap<String,Double> activeCurrent;
+	private HashMap<String,Double> activeNotCurrent;
+	private HashMap<String,Double> passives;
+	private HashMap<String,Double> heritage; 
+	private HashMap<String,Double> entry;
+	private HashMap<String,Double> spend;
 	
 	public Container() {
 		activeCurrent = new HashMap<>();
@@ -21,83 +21,83 @@ public class Container {
 		
 	}
 	
-	public HashMap<String, Integer> getActivesCurrent() {
+	public HashMap<String, Double> getActivesCurrent() {
 		return activeCurrent;
 	}
 	
-	public HashMap<String, Integer> getActivesNotCurrent() {
+	public HashMap<String, Double> getActivesNotCurrent() {
 		return activeNotCurrent;
 	}
 
-	public HashMap<String, Integer> getPassives() {
+	public HashMap<String, Double> getPassives() {
 		return passives;
 	}
 
 
 
-	public HashMap<String, Integer> getHeritage() {
+	public HashMap<String, Double> getHeritage() {
 		return heritage;
 	}
 
 
 
-	public HashMap<String, Integer> getEntry() {
+	public HashMap<String, Double> getEntry() {
 		return entry;
 	}
 
 
 
-	public HashMap<String, Integer> getSpend() {
+	public HashMap<String, Double> getSpend() {
 		return spend;
 	}
 
 
 
-	public int sumValues(HashMap<String,Integer> map) {
-		Collection<Integer> list = map.values();
-		int sum = 0;
-		for(int i: list) {
+	public double sumValues(HashMap<String,Double> map) {
+		Collection<Double> list = map.values();
+		double sum = 0;
+		for(double i: list) {
 			sum += i;
 		}
 		return sum; 
 	}
 	
-	public int diff() {
-		int a = sumValues(this.activeCurrent);
-		int anc = sumValues(this.activeNotCurrent);
-		int h = sumValues(this.heritage);
-		int p = sumValues(this.passives);
+	public double diff() {
+		double a = sumValues(activeCurrent);
+		double anc = sumValues(activeNotCurrent);
+		double h = sumValues(heritage);
+		double p = sumValues(passives);
 		
 		return (a+anc)-p-h;
 	}
 	
-	public int totalActivesC() {
+	public double totalActivesC() {
 		return sumValues(this.activeCurrent);
 	}
 	
-	public int totalActivesNC() {
+	public double totalActivesNC() {
 		return sumValues(this.activeNotCurrent);
 	}
 	
-	public int totalPassives() {
+	public double totalPassives() {
 		return sumValues(this.passives);
 	}
 	
-	public int totalHeritage() {
+	public double totalHeritage() {
 		return sumValues(this.heritage);
 	}
 	
-	public int totalEntry() {
+	public double totalEntry() {
 		return sumValues(this.entry);
 	}
 	
-	public int totalSpend() {
+	public double totalSpend() {
 		return sumValues(this.entry);
 	}
 	
-	public int getUtility() {
-		int entry = sumValues(this.entry);
-		int spend = sumValues(this.spend);
+	public double getUtility() {
+		double entry = sumValues(this.entry);
+		double spend = sumValues(this.spend);
 		return entry-spend;
 	}
 	

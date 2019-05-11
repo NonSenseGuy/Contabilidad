@@ -1,6 +1,9 @@
 package controller;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -23,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Pair;
@@ -31,6 +35,7 @@ import model.Container;
 public class GBController implements Initializable{
 	
 	private Container container;
+	
 
     @FXML
     private ListView<String> activeCurrentList;
@@ -49,6 +54,12 @@ public class GBController implements Initializable{
 
     @FXML
     private Button addAccountButton;
+    
+    @FXML
+    private Label companyName;
+    
+    @FXML
+    private Label date;
     
     @FXML
     private Label totalActives;
@@ -75,76 +86,6 @@ public class GBController implements Initializable{
     void next(ActionEvent event) {
     	goToRE();
     }
-
-//    @FXML
-//    void addActive(ActionEvent event) {
-//    	try {
-//    		String account = createInputDialog("Activo","Nombre de la cuenta");
-//        	int value = Integer.parseInt((createInputDialog("Activo","valor de la cuenta")));
-//        	container.getActivesCurrent().put(account, value);
-//        	String entryorspend = entryOrSpendDialog();
-//        	if(entryorspend.equals("i")) {
-//        		container.getEntry().put(account, value);
-//        	}else if(entryorspend.equals("g")) {
-//        		container.getSpend().put(account, value);
-//        	}
-//        	updateGUI();
-//        	
-//    	}catch(NumberFormatException e) {
-//    		Alert alert = new Alert(AlertType.ERROR);
-//	    	alert.setContentText("Formateo erroneo");
-//	    	alert.showAndWait();
-//	    	throw new IllegalArgumentException("");
-//    	}
-//    	 
-//    }
-//
-//    @FXML
-//    void addHeritage(ActionEvent event) {
-//    	try {
-//    		String account = createInputDialog("Patrimonio","Nombre de la cuenta");
-//        	int value = Integer.parseInt((createInputDialog("Patrimonio","valor de la cuenta")));
-//        	container.getHeritage().put(account, value);
-//        	String entryorspend = entryOrSpendDialog();
-//        	if(entryorspend.equals("i")) {
-//        		container.getEntry().put(account, value);
-//        	}else if(entryorspend.equals("g")) {
-//        		container.getSpend().put(account, value);
-//        	}
-//        	updateGUI();
-//    	}catch(NumberFormatException e) {
-//    		Alert alert = new Alert(AlertType.ERROR);
-//	    	alert.setContentText("Formateo erroneo");
-//	    	alert.showAndWait();
-//	    	throw new IllegalArgumentException("");
-//    	}
-//    	
-//    	 
-//    }
-//
-//    @FXML
-//    void addPasive(ActionEvent event) {
-//    	try {
-//    		String account = createInputDialog("Pasivo","Nombre de la cuenta");
-//        	int value = Integer.parseInt((createInputDialog("Pasivo","valor de la cuenta")));
-//        	container.getPassives().put(account, value);
-//        	String entryorspend = entryOrSpendDialog();
-//        	if(entryorspend.equals("i")) {
-//        		container.getEntry().put(account, value);
-//        	}else if(entryorspend.equals("g")) {
-//        		container.getSpend().put(account, value);
-//        	}
-//        	updateGUI();
-//    	}catch(NumberFormatException e) {
-//    		Alert alert = new Alert(AlertType.ERROR);
-//	    	alert.setContentText("Formateo erroneo");
-//	    	alert.showAndWait();
-//	    	throw new IllegalArgumentException("");
-//    	}
-//    	
-//    	 
-//    }
-
     @FXML
     void evaluateBalance(ActionEvent event) {
     	if(container.isBalanced()) {
@@ -224,14 +165,14 @@ public class GBController implements Initializable{
 		});
 		Optional<Pair<String, String>> result = dialog.showAndWait();
 		result.ifPresent(e -> {
-			addAccount(e.getKey(), Integer.parseInt(e.getValue()), choices.getValue());
+			addAccount(e.getKey(), Double.parseDouble(e.getValue()), choices.getValue());
 		});
 	}
 	
-	public void addAccount(String account, int value, String type) {
+	public void addAccount(String account, double value, String type) {
 
 		Alert alert = null;
-		if (account == null || account.equals("") || Integer.toString(value) == null || Integer.toString(value).equals("") || type == null
+		if (account == null || account.equals("") || Double.toString(value) == null || Double.toString(value).equals("") || type == null
 				|| type.equals("")) {
 
 			if (account == null || account.equals("")) {
@@ -241,7 +182,7 @@ public class GBController implements Initializable{
 				alert.setContentText("El nombre no puede estar vacío.");
 				alert.showAndWait();
 
-			} else if (Integer.toString(value) == null || Integer.toString(value).equals("")) {
+			} else if (Double.toString(value) == null || Double.toString(value).equals("")) {
 
 				alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
@@ -256,7 +197,7 @@ public class GBController implements Initializable{
 				alert.setContentText("El tipo no puede estar vacío.");
 				alert.showAndWait();
 			}
-		} else if(Integer.toString(value).startsWith("-")){
+		} else if(Double.toString(value).startsWith("-")){
 			alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("Error en el valor.");
@@ -288,58 +229,69 @@ public class GBController implements Initializable{
 	
 	public void updateGUI() {
 		refreshUtility();
+		 DecimalFormat df = new DecimalFormat(
+			      "#,##0.00", 
+			      new DecimalFormatSymbols(new Locale("pt", "BR")));
+
 		if(!container.getActivesCurrent().isEmpty()) {
 			activeCurrentList.getItems().clear();
 			for(String account: container.getActivesCurrent().keySet()) {
-				String s = account + "          $ " + container.getActivesCurrent().get(account);
+				String s = account + "          $ " + df.format(container.getActivesCurrent().get(account));
 				activeCurrentList.getItems().add(s);
 			}
 		}
 		if(!container.getActivesNotCurrent().isEmpty()) {
 			activeNotCurrentList.getItems().clear();
 			for(String account: container.getActivesNotCurrent().keySet()) {
-				String s = account + "          $ " + container.getActivesNotCurrent().get(account);
+				String s = account + "          $ " + df.format(container.getActivesNotCurrent().get(account));
 				activeNotCurrentList.getItems().add(s);
 			}
 		}
 		if(!container.getPassives().isEmpty()) {
 			passiveList.getItems().clear();
 			for(String account: container.getPassives().keySet()) {
-				String s = account + "          $ " + container.getPassives().get(account);
+				String s = account + "          $ " + df.format(container.getPassives().get(account));
 				passiveList.getItems().add(s);
 			}
 		}
 		if(!container.getHeritage().isEmpty()) {
 			heritageList.getItems().clear();
 			for(String account: container.getHeritage().keySet()) {
-				String s = account + "          $ " + container.getHeritage().get(account);
+				String s = account + "          $ " + df.format(container.getHeritage().get(account));
 				heritageList.getItems().add(s);
 			}	
 				
 		}
 		
-		totalActivesC.setText("$ "+Integer.toString(container.totalActivesC()));
-		totalActivesNC.setText("$ "+Integer.toString(container.totalActivesNC()));
-		totalPassives.setText("$ "+Integer.toString(container.totalPassives()));
-		totalHeritage.setText("$ "+Integer.toString(container.totalHeritage()));
-		totalActives.setText("$ "+Integer.toString(container.totalActivesC()+container.totalActivesNC()));
-		totalPassivesAndHeritage.setText("$ "+Integer.toString(container.totalPassives()+container.totalHeritage()));
+		totalActivesC.setText("$ "+df.format(container.totalActivesC()));
+		totalActivesNC.setText("$ "+df.format(container.totalActivesNC()));
+		totalPassives.setText("$ "+df.format(container.totalPassives()));
+		totalHeritage.setText("$ "+df.format(container.totalHeritage()));
+		totalActives.setText("$ "+df.format(container.totalActivesC()+container.totalActivesNC()));
+		totalPassivesAndHeritage.setText("$ "+df.format(container.totalPassives()+container.totalHeritage()));
 		
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		container = new Container();
-		   Platform.runLater(() -> {
-
-				updateGUI();
-				if(container == null) {
-					container = new Container();
-				}
-				
-		    });
-
+		Platform.runLater(() -> {
+			updateGUI();
+			if(container == null) {
+				container = new Container();
+			}
+			
+	    });
+		
+		   
 	}
+	
+
+    @FXML
+    void removeCurrentActive(MouseEvent event) {
+    	container.getActivesCurrent().remove(activeCurrentList.getSelectionModel().getSelectedItem());
+    	updateGUI();
+    }
 	
 	public void setContainer(Container c ) {
 		container = c;
@@ -365,6 +317,14 @@ public class GBController implements Initializable{
 	
 	public void refreshUtility() {
 		container.getHeritage().put("Utilidad", container.getUtility());
+	}
+	
+	public void setCompanyName(String cName) {
+		companyName.setText(cName);
+	}
+	
+	public void setDate(String date) {
+		this.date.setText(date);
 	}
 
 }
