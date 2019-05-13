@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
@@ -49,6 +50,16 @@ public class REController implements Initializable{
     @FXML
     void next(ActionEvent event) {
     	goToGB();
+    }
+    
+    @FXML
+    private Button DeleteButton;
+
+    @FXML
+    void DeleteClicked(ActionEvent event) {
+
+    	deleteSelectedAccounts();
+    	
     }
 
     @FXML
@@ -81,6 +92,25 @@ public class REController implements Initializable{
 	    	throw new IllegalArgumentException("");
     	}
     	
+    }
+    
+    public void deleteSelectedAccounts() {
+    	
+    	String entrySearch = entryList.getSelectionModel().getSelectedItem();
+    	if(entrySearch!=null) {
+    		String [] entry = entrySearch.split(" ");
+    		
+    		container.getEntry().remove(entry[0]);
+    	}
+    	
+    	String spendSearch = spendList.getSelectionModel().getSelectedItem();
+    	if(spendSearch!=null) {
+    		String [] spend = spendSearch.split(" ");
+    		
+    		container.getSpend().remove(spend[0]);
+    	}
+    	
+    	updateGUI();
     }
     
     public void setContainer(Container c) {
@@ -157,7 +187,8 @@ public class REController implements Initializable{
 				
 		    });
 
-		
+		entryList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		spendList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}
 	
 	public void refreshUtility() {

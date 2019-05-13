@@ -24,6 +24,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
@@ -83,6 +84,48 @@ public class GBController implements Initializable{
     private Button evaluateButton;
     
     @FXML
+    private Button DeleteAccountButton;
+
+    @FXML
+    void DeleteAccountClicked(ActionEvent event) {
+
+    	/**
+    	GridPane grid = new GridPane();
+		Dialog<Pair<String, String>> dialog = new Dialog<>();
+		ButtonType loginButtonType = new ButtonType("Aceptar", ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+		dialog.setTitle("Eliminar la cuenta");
+		dialog.setHeaderText(null);
+		TextField name = new TextField();
+		name.setPromptText("cuenta a borrar en :");
+		
+		ChoiceBox<String> choices = new ChoiceBox<>();
+		choices.setItems(FXCollections.observableArrayList("Activo Corriente", "Activo No Corriente", "Pasivo",
+				"Patrimonio"));
+		TextField value = new TextField();
+		
+		grid.add(new Label("Seleccione el tipo: "), 0, 2);
+		grid.add(choices, 1, 2);
+		dialog.getDialogPane().setContent(grid);
+		dialog.setResultConverter(f -> {
+			if (f == loginButtonType) {
+				return new Pair<>(name.getText(), value.getText());
+			}
+			return null;
+		});
+		
+		Optional<Pair<String, String>> result = dialog.showAndWait();
+		result.ifPresent(e -> {
+			deleteSelectedAccount(choices.getValue());
+		});
+		*/
+    	deleteSelectedAccounts();
+    	
+    	updateGUI();
+    }
+
+    
+    @FXML
     void next(ActionEvent event) {
     	goToRE();
     }
@@ -98,7 +141,39 @@ public class GBController implements Initializable{
 	    	alert.setContentText("El balange general esta erroneo, la diferencia es de " + container.diff());
 	    	alert.showAndWait();
     	}
-    }   
+    }  
+    
+    public void deleteSelectedAccounts() {
+    	
+    	String activeCurrentSearch = activeCurrentList.getSelectionModel().getSelectedItem();
+    	if(activeCurrentSearch!=null) {
+    		String [] activeCurrent=activeCurrentSearch.split(" ");
+    		
+    		container.getActivesCurrent().remove(activeCurrent[0]);
+    	}
+    	
+    	String activeNotCurrentSearch = activeNotCurrentList.getSelectionModel().getSelectedItem();
+    	if(activeNotCurrentSearch!=null) {
+    		String [] activeNotCurrent=activeNotCurrentSearch.split(" ");
+    		
+    		container.getActivesNotCurrent().remove(activeNotCurrent[0]);
+    	}  
+    	
+    	String passiveCurrentSearch=passiveList.getSelectionModel().getSelectedItem();
+    	if(passiveCurrentSearch!=null) {
+    		String [] passive=passiveCurrentSearch.split(" ");
+    		
+    		container.getPassives().remove(passive[0]);
+    	}
+    	
+    	String heritageCurrentSearch = heritageList.getSelectionModel().getSelectedItem();
+    	if(heritageCurrentSearch!=null) {
+    		String [] heritage=heritageCurrentSearch.split(" ");
+    		
+    		container.getHeritage().remove(heritage[0]);
+    	}
+    	
+    }
     
 	public String createInputDialog(String title, String message) throws IllegalArgumentException{
 		TextInputDialog dialog = new TextInputDialog("");
@@ -283,7 +358,10 @@ public class GBController implements Initializable{
 			
 	    });
 		
-		   
+		   activeCurrentList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		   activeNotCurrentList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		   passiveList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		   heritageList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}
 	
 

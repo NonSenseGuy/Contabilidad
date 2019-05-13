@@ -16,5 +16,6 @@
       <Label fx:id="Utility" layoutX="302.0" layoutY="458.0" prefHeight="17.0" prefWidth="172.0" text="0" />
       <Button id="addActive" fx:id="nextButton" layoutX="14.0" layoutY="454.0" mnemonicParsing="false" onAction="#next" text="Balance general" />
       <ListView id="activesList" fx:id="spendList" layoutX="104.0" layoutY="250.0" prefHeight="180.0" prefWidth="370.0" />
+      <Button fx:id="DeleteButton" layoutX="521.0" layoutY="221.0" mnemonicParsing="false" onAction="#DeleteClicked" text="Eliminar" />
    </children>
 </AnchorPane>
