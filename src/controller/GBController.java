@@ -89,36 +89,6 @@ public class GBController implements Initializable{
     @FXML
     void DeleteAccountClicked(ActionEvent event) {
 
-    	/**
-    	GridPane grid = new GridPane();
-		Dialog<Pair<String, String>> dialog = new Dialog<>();
-		ButtonType loginButtonType = new ButtonType("Aceptar", ButtonData.OK_DONE);
-		dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
-		dialog.setTitle("Eliminar la cuenta");
-		dialog.setHeaderText(null);
-		TextField name = new TextField();
-		name.setPromptText("cuenta a borrar en :");
-		
-		ChoiceBox<String> choices = new ChoiceBox<>();
-		choices.setItems(FXCollections.observableArrayList("Activo Corriente", "Activo No Corriente", "Pasivo",
-				"Patrimonio"));
-		TextField value = new TextField();
-		
-		grid.add(new Label("Seleccione el tipo: "), 0, 2);
-		grid.add(choices, 1, 2);
-		dialog.getDialogPane().setContent(grid);
-		dialog.setResultConverter(f -> {
-			if (f == loginButtonType) {
-				return new Pair<>(name.getText(), value.getText());
-			}
-			return null;
-		});
-		
-		Optional<Pair<String, String>> result = dialog.showAndWait();
-		result.ifPresent(e -> {
-			deleteSelectedAccount(choices.getValue());
-		});
-		*/
     	deleteSelectedAccounts();
     	
     	updateGUI();
@@ -356,6 +326,7 @@ public class GBController implements Initializable{
 				container = new Container();
 			}
 			
+			
 	    });
 		
 		   activeCurrentList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -370,7 +341,7 @@ public class GBController implements Initializable{
     	container.getActivesCurrent().remove(activeCurrentList.getSelectionModel().getSelectedItem());
     	updateGUI();
     }
-	
+    
 	public void setContainer(Container c ) {
 		container = c;
 	}
