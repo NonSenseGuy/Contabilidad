@@ -14,7 +14,7 @@
       <Button id="nextButton" fx:id="nextButton" layoutX="439.0" layoutY="606.0" mnemonicParsing="false" onAction="#next" prefHeight="25.0" prefWidth="126.0" text="Estado de resultados" />
       <Button id="addHeritage" fx:id="addAccountButton" layoutX="172.0" layoutY="606.0" mnemonicParsing="false" onAction="#addDato" prefHeight="25.0" prefWidth="126.0" text="Agregar Cuenta" />
       <Button id="nextButton" fx:id="evaluateButton" layoutX="28.0" layoutY="606.0" mnemonicParsing="false" onAction="#evaluateBalance" prefHeight="25.0" prefWidth="126.0" text="Evaluar balance" />
-      <ListView id="pasivesList" fx:id="activeCurrentList" layoutX="-5.0" layoutY="120.0" onMouseClicked="#removeCurrentActive" prefHeight="195.0" prefWidth="304.0" />
+      <ListView id="pasivesList" fx:id="activeCurrentList" layoutX="-5.0" layoutY="120.0" prefHeight="195.0" prefWidth="304.0" />
       <ListView id="pasivesList" fx:id="heritageList" layoutX="299.0" layoutY="364.0" prefHeight="188.0" prefWidth="312.0" />
       <ListView id="pasivesList" fx:id="activeNotCurrentList" layoutX="-5.0" layoutY="364.0" prefHeight="188.0" prefWidth="304.0" />
       <Label fx:id="totalActivesNC" layoutX="174.0" layoutY="527.0" prefHeight="17.0" prefWidth="126.0" text="0" />

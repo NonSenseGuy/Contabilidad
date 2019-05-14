@@ -27,7 +27,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Pair;
@@ -278,35 +277,35 @@ public class GBController implements Initializable{
 			      "#,##0.00", 
 			      new DecimalFormatSymbols(new Locale("pt", "BR")));
 
-		if(!container.getActivesCurrent().isEmpty()) {
+		//if(!activeCurrentList.getItems().isEmpty()) {
 			activeCurrentList.getItems().clear();
 			for(String account: container.getActivesCurrent().keySet()) {
 				String s = account + "          $ " + df.format(container.getActivesCurrent().get(account));
 				activeCurrentList.getItems().add(s);
 			}
-		}
-		if(!container.getActivesNotCurrent().isEmpty()) {
+		//}
+		//if(!activeNotCurrentList.getItems().isEmpty()) {
 			activeNotCurrentList.getItems().clear();
 			for(String account: container.getActivesNotCurrent().keySet()) {
 				String s = account + "          $ " + df.format(container.getActivesNotCurrent().get(account));
 				activeNotCurrentList.getItems().add(s);
 			}
-		}
-		if(!container.getPassives().isEmpty()) {
+		//}
+		//if(!passiveList.getItems().isEmpty()) {
 			passiveList.getItems().clear();
 			for(String account: container.getPassives().keySet()) {
 				String s = account + "          $ " + df.format(container.getPassives().get(account));
 				passiveList.getItems().add(s);
 			}
-		}
-		if(!container.getHeritage().isEmpty()) {
+		//}
+		//if(!heritageList.getItems().isEmpty()) {
 			heritageList.getItems().clear();
 			for(String account: container.getHeritage().keySet()) {
 				String s = account + "          $ " + df.format(container.getHeritage().get(account));
 				heritageList.getItems().add(s);
 			}	
 				
-		}
+		//}
 		
 		totalActivesC.setText("$ "+df.format(container.totalActivesC()));
 		totalActivesNC.setText("$ "+df.format(container.totalActivesNC()));
@@ -335,12 +334,6 @@ public class GBController implements Initializable{
 		   heritageList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}
 	
-
-    @FXML
-    void removeCurrentActive(MouseEvent event) {
-    	container.getActivesCurrent().remove(activeCurrentList.getSelectionModel().getSelectedItem());
-    	updateGUI();
-    }
     
 	public void setContainer(Container c ) {
 		container = c;
