@@ -138,22 +138,22 @@ public class REController implements Initializable{
     	DecimalFormat df = new DecimalFormat(
 			      "#,##0.00", 
 			      new DecimalFormatSymbols(new Locale("pt", "BR")));
-    	if(!container.getEntry().isEmpty()) {
+//    	if(!container.getEntry().isEmpty()) {
     		entryList.getItems().clear();
     		for(String account: container.getEntry().keySet()) {
     			String s = account + "          $ "+ df.format(container.getEntry().get(account));
     			entryList.getItems().add(s);
-    		}
+//    		}
     		
     	}
-    	if(!container.getSpend().isEmpty()){
+//    	if(!container.getSpend().isEmpty()){
     		spendList.getItems().clear();
     		for(String account: container.getSpend().keySet()) {
     			String s = account + "          $ " + df.format(container.getSpend().get(account));
     			spendList.getItems().add(s);
     		}
     		
-    	}
+//    	}
     	
     		Utility.setText(df.format(container.getUtility()));
     }

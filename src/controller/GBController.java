@@ -241,12 +241,12 @@ public class GBController implements Initializable{
 				alert.setContentText("El tipo no puede estar vacío.");
 				alert.showAndWait();
 			}
-		} else if(Double.toString(value).startsWith("-")){
-			alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error");
-			alert.setHeaderText("Error en el valor.");
-			alert.setContentText("El valor ingresado debe ser positivo.");
-			alert.showAndWait();
+//		} else if(Double.toString(value).startsWith("-")){
+//			alert = new Alert(AlertType.ERROR);
+//			alert.setTitle("Error");
+//			alert.setHeaderText("Error en el valor.");
+//			alert.setContentText("El valor ingresado debe ser positivo.");
+//			alert.showAndWait();
 			
 		}else {
 	
